@@ -1,0 +1,70 @@
+Building Database Applications in PHP
+
+Week 1: PHP Objects
+
+Object Oriented Concepts
+http://php.net/manual/en/ref.datetime.php
+
+http://php.net/manual/en/class.datetime.php
+
+https://www.wa4e.com/code/objects/date.php
+
+Creating Objects in PHP
+https://www.wa4e.com/code/objects/nonobj.php
+
+https://www.wa4e.com/code/objects/withobj.php
+
+Object Oriented Libraries in PHP
+http://php.net/manual/en/language.oop5.magic.php
+
+Object Life Cycle in PHP
+https://www.wa4e.com/code/objects/party.php
+
+https://www.wa4e.com/code/objects/hello.php
+
+Object Inheritance in PHP
+https://www.wa4e.com/code/objects/goodbye.php
+
+https://www.wa4e.com/code/objects/scratch.php
+
+https://www.wa4e.com/code/objects/visibility.php
+
+http://www.php.net/manual/en/language.oop5.visibility.php
+
+Week 2: Connecting PHP and MySQL
+
+PHP Database Libraries
+http://php.net/manual/en/mysqlinfo.api.choosing.php
+
+Error Handling with PDO
+http://php.net/manual/en/pdo.error-handling.php
+
+Windows log file tail utility
+http://ophilipp.free.fr/op_tail.htm
+
+Week 3: PHP Cookies and Sessions
+
+Cookies
+http://www.wa4e.com/code/sessions/cookie.php
+
+Sessions
+www.tsugi.org
+
+http://php.net/manual/en/function.session-start.php
+
+http://php.net/manual/en/function.session-destroy.php
+
+http://www.wa4e.com/code/sessions/sessfun.php
+
+Sessions Without Cookies
+http://www.wa4e.com/code/sessions/nocookie.php
+
+Week 4: Redirect, Routing & Authentication
+
+Wiki - Post/Redirect/Get
+https://en.wikipedia.org/wiki/Post/Redirect/Get
+
+Mozilla Developer Network - Sending form data
+https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data
+
+Week 5: C.R.U.D.

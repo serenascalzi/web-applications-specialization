@@ -1,0 +1,15 @@
+JavaScript, jQuery, and JSON
+
+Week 1: JavaScript
+
+Internet Explorer Console Undefined Error
+https://stackoverflow.com/questions/3326650/console-is-undefined-error-for-internet-explorer
+
+JS Foundation
+https://js.foundation/
+
+Week 2: JavaScript Objects
+
+Week 3: Using jQuery
+
+Week 4: JavaScript Object Notation (JSON)

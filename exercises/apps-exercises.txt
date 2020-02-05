@@ -1,0 +1,155 @@
+CREATE DATABASE misc;
+
+GRANT ALL ON misc.* TO 'fred'@'localhost' IDENTIFIED BY 'zap';
+
+GRANT ALL ON misc.* TO 'fred'@'127.0.0.1' IDENTIFIED BY 'zap';
+
+USE misc; (Command Line Only)
+
+CREATE TABLE users (
+  user_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR (128),
+  email VARCHAR (128),
+  password VARCHAR (128),
+  INDEX (email)
+) ENGINE = InnoDB CHARSET = utf8;
+
+INSERT INTO users (name, email, password) VALUES ('Chuck', 'csev@umich.edu', '123');
+INSERT INTO users (name, email, password) VALUES ('Glenn', 'gg@umich.edu', '456');
+
+$pdo = new PDO('mysql:host = localhost; port = 8889; dbname = misc', 'fred', 'zap');
+
+<?php
+  echo "<pre>\n";
+  $pdo = new PDO('mysql:host = localhost; port = 8889; dbname = misc', 'fred', 'zap');
+  $stmt = $pdo -> query ("SELECT * FROM users");
+  while ($row = $stmt -> fetch (PDO::FETCH_ASSOC)) {
+    print_r($row);
+  }
+echo "</pre>\n"; ?>
+
+OUTPUT #1
+Array (
+  [user_id] => 1
+  [name] => Chuck
+  [email] => csev@umich.edu
+  [password] => 123
+)
+
+Array (
+  [user_id] => 2
+  [name] => Glenn
+  [email] => gg@umich.edu
+  [password] => 456
+)
+
+<?php
+  $pdo = new PDO('mysql:host = localhost; port = 8889; dbname = misc', 'fred', 'zap');
+  $stmt = $pdo -> query ("SELECT name, email, password FROM users");
+  echo '<table border="1">'.'"\n";
+  while ($row = $stmt -> fetch (PDO::FETCH_ASSOC)) {
+    echo "<tr><td>";
+    echo ($row['name']);
+    echo ("</td><td>");
+    echo ($row['email']);
+    echo ("</td><td>");
+    echo ($row['password']);
+    echo ("</td></tr>\n");
+  }
+echo "</table>\n"; ?>
+
+OUTPUT #2
+<table border = "1">
+  <tr><td>Chuck</td><td>csev@umich.edu</td><td>123</td></tr>
+  <tr><td>Glenn</td><td>gg@umich.edu</td><td>456</td></tr>
+</table>
+
+<?php
+  $pdo = new PDO('mysql:host = localhost; port = 8889; dbname = misc', 'fred', 'zap');
+  // See the "errors" folder for details...
+  $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+?>
+
+<?php
+  echo "<pre>\n";
+  require_once "pdo.php";
+  $stmt = $pdo -> query ("SELECT * FROM users");
+  while ($row = $stmt -> fetch (PDO::FETCH_ASSOC)) {
+    print_r($row);
+  }
+echo "</pre>\n"; ?>
+
+OUTPUT #1
+
+<?php
+  require_once "pdo.php";
+  if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])) {
+    $sql = "INSERT INTO users (name, email, password) VALUES (:name, :email, :password)";
+    echo ("<pre>\n".$sql."\n</pre>\n");
+    $stmt = $pdo -> prepare($sql);
+    $stmt -> execute(array(
+      ':name' => $_POST['name'],
+      ':email' => $_POST['email'],
+      ':password' => $_POST['password']));
+  }
+  if (isset($_POST['delete']) && isset($_POST['user_id'])) {
+    $sql = "DELETE FROM users WHERE user_id = :zip";
+    echo "<pre>\n$sql\n</pre>\n";
+    $stmt = $pdo -> prepare($sql);
+    $stmt -> execute(array(':zip' => $_POST['user_id']));
+  }
+?>
+
+<html>
+  <head></head>
+  <body>
+    <table border="1">
+    <?php
+      $stmt = $pdo -> query ("SELECT name, email, password, user_id FROM users");
+      while ($row = $stmt -> fetch (PDO::FETCH_ASSOC)) {
+        echo "<tr><td>";
+        echo ($row['name']);
+        echo ("</td><td>");
+        echo ($row['email']);
+        echo ("</td><td>");
+        echo ($row['password']);
+        echo ("</td><td>");
+        echo ('<form method="post"><input type="hidden" ');
+        echo ('name="user_id" value="'.$row['user_id'].'">'."\n");
+        echo ('<input type="submit" value="Del" name="delete">');
+        echo ("\n</form>\n");
+        echo ("</td></tr>\n");
+      }
+    ?>
+    </table>
+    <p>Add A New User</p>
+    <form method="post">
+      <p>Name:<input type="text" name="name" size="40"></p>
+      <p>Email:<input type="text" name="email"></p>
+      <p>Password:<input type="password" name="password"></p>
+      <p><input type="submit" value="Add New" /></p>
+    </form>
+  </body>
+</html>
+
+if (isset($_POST['email']) && isset($_POST['password'])) {
+  echo ("Handling POST data...\n");
+  $sql = "SELECT name FROM users WHERE email = :em AND password = :pw";
+  echo "<pre>\n$sql\n</pre>\n";
+  $stmt = $pdo -> prepare($sql);
+  $stmt -> execute(array(
+    ':em' => $_POST['email'],
+    ':pw' => $_POST['password']));
+  $row = $stmt -> fetch (PDO::FETCH_ASSOC);
+}
+
+$pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+try {
+  $stmt = $pdo -> prepare("SELECT * FROM users WHERE user_id = :xyz");
+  $stmt -> execute(array(":pizza" => $_GET['user_id']));
+} catch (Exception $ex) {
+  echo ("Internal error, please contact support");
+  error_log("error4.php, SQL error =".$ex -> getMessage());
+  return;
+}
+$row = $stmt -> fetch (PDO::FETCH_ASSOC);

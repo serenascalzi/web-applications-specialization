@@ -1,0 +1,35 @@
+CREATE TABLE Account (
+  account_id INTEGER NOT NULL AUTO_INCREMENT,
+  email VARCHAR(128) UNIQUE,
+  name VARCHAR (128),
+  PRIMARY KEY (account_id)
+) ENGINE = InnoDB CHARACTER SET = utf8;
+
+CREATE TABLE Course (
+  course_id INTEGER NOT NULL AUTO_INCREMENT,
+  title VARCHAR(128) UNIQUE,
+  PRIMARY KEY (course_id)
+) ENGINE = InnoDB CHARACTER SET = utf8;
+
+CREATE TABLE Member (
+  account_id INTEGER,
+  course_id INTEGER,
+  role INTEGER,
+  CONSTRAINT FOREIGN KEY (account_id) REFERENCES Account (account_id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FOREIGN KEY (course_id) REFERENCES Course (course_id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  PRIMARY KEY (account_id, course_id)
+) ENGINE = InnoDB CHARACTER SET = utf8;
+
+INSERT INTO Account (name, email) VALUES ('name', 'email');
+
+INSERT INTO Course (title) VALUES ('title');
+
+INSERT INTO Member (account_id, course_id, role)
+  VALUES (account_id #, course_id #, role #);
+
+SELECT Account.name, Member.role, Course.title
+FROM Account JOIN Member JOIN Course
+ON Member.account_id = Account.account_id AND Member.course_id = Course.course_id
+ORDER BY Course.title, Member.role DESC, Account.name;

@@ -1,0 +1,110 @@
+Building Web Applications in PHP
+
+Week 1: Introduction to Dynamic Web Content
+
+Our Technologies
+Brian Behlendorf - Apache Foundation
+https://youtu.be/6kRMlfIBMCY
+
+Rasmus Lerdorft - PHP Inventor - Yahoo!
+https://youtu.be/YIGRXEzjE6c
+
+Brendan Eich: JavaScript
+https://youtu.be/IPxQ9kEaF8c
+
+Douglas Crockford - "Discovered" JSON
+https://youtu.be/kc8BAR7SHJI
+
+John Resig - jQuery
+https://youtu.be/5SzUDgDvCzc
+
+HyperText Transfer Protocol (HTTP) & Request/Response Cycle
+GET Request Page
+http://data.pr4e.org/page1.htm
+
+Response Page
+http://data.pr4e.org/page2.htm
+
+HyperText Transfer Protocol
+http://www.w3.org/Protocols/rfc2616/rfc2616.txt
+
+What happens when you click a link?
+https://www.youtube.com/watch?v=keo0dglCj7I
+
+Week 2: HyperText Markup Language (HTML)
+
+Robert Cailliau - Co-founder of the World Wide Web
+https://www.youtube.com/watch?v=x2GylLq59rI
+
+World Wide Web Consortium
+https://www.w3.org/Consortium/facts
+
+Week 3: Cascading Style Sheets (CSS)
+
+Images, Colors, and Links in CSS
+CSS Images Sample Code
+http://www.wa4e.com/code/css/images.htm
+
+W3C: HTML Colors
+http://www.w3schools.com/html/html_colors.asp
+
+W3C: Advanced Colors
+http://www.w3schools.com/css/css_colors.asp
+
+Other Resources
+Web Developer Plugin by Chris Pedrick
+https://chrispederick.com/
+
+CSS Cheat Sheet by Leslie Frank
+http://www.lesliefranke.com/files/reference/csscheatsheet.html
+
+Week 4: Installing PHP and SQL
+
+Installation Handouts
+Setting up the MAMP PHP/MySql Environment on a Macintosh
+https://www.wa4e.com/software-mac.php
+
+Week 5: Introduction to PHP
+
+Week 6: PHP Arrays
+
+Week 7: PHP Functions
+
+PHP - Functions
+http://php.net/manual/en/function.sort.php
+
+PHP - Variable Scope
+http://php.net/manual/en/language.variables.scope.php
+
+http://php.net/manual/en/language.variables.superglobals.php
+
+http://php.net/manual/en/function.array-key-exists.php
+
+PHP - Modularity
+https://github.com/csev/wa4e
+
+Week 8: PHP Forms
+
+HTML Forms
+http://www.wa4e.com/code/forms/form1.php
+
+Using GET and POST with Forms
+http://www.wa4e.com/code/forms/form3.php
+
+HTML Input Types
+http://www.wa4e.com/code/forms/more.php
+
+HTML5 Input Types
+http://www.wa4e.com/code/forms/html5.php
+
+Processing Form Data and HTML Injection
+http://www.wa4e.com/code/forms/form4.php
+
+http://www.wa4e.com/code/forms/form5.php
+
+Guessing Game
+http://www.wa4e.com/code/forms/guess.php?guess=200
+
+Model View Controller (MVC)
+http://www.wa4e.com/code/forms/guess_mvc.php
+
