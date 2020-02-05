@@ -1,0 +1,50 @@
+MySQL Start with MAMP/Command Line:
+/Applications/MAMP/Library/bin/mysql -u root -p
+Password: root
+
+CREATE DATABASE People DEFAULT CHARACTER SET utf8;
+
+USE People; (Command Line Only)
+
+CREATE TABLE Users (
+	name VARCHAR(128),
+	email VARCHAR(128)
+);
+
+DESCRIBE Users; (Command Line Only)
+
+INSERT INTO Users (name, email) VALUES ('name', 'email@url.com');
+
+DELETE FROM Users WHERE email='email@url.com';
+
+UPDATE Users SET name='name' WHERE email='email@url.com';
+
+SELECT * FROM Users;
+
+SELECT * FROM Users WHERE email='email@url.com';
+
+SELECT * FROM Users ORDER BY email;
+
+SELECT * FROM Users WHERE name like '%e%';
+
+SELECT * FROM Users ORDER BY email DESC LIMIT 2;
+SELECT * FROM Users ORDER BY email LIMIT 1,2;
+
+SELECT COUNT(*) FROM Users;
+SELECT COUNT(*) FROM Users WHERE email='email@url.com';
+
+DROP TABLE Users;
+
+CREATE TABLE Users (
+	user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	name VARCHAR(128),
+	email VARCHAR(128),
+	PRIMARY KEY (user_id),
+	INDEX (email)
+):
+
+ALTER TABLE Users ADD INDEX (email) USING BTREE;
+
+Functions:
+http://dev.mysql.com/doc/refman/5.0/en/string-functions.html
+http://dev.mysql.com/doc/refman/5.0/en/date-and-time-functions.html

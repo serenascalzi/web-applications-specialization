@@ -1,0 +1,26 @@
+Introduction to Structured Query Language (SQL)
+
+Week 1: Installing PHP and SQL
+
+Week 2: Introduction to SQL
+
+Assignment Resources
+SQL Handout (Week 2 Basic SQL Operations)
+https://www.wa4e.com/lectures/SQL-01-MySQL-Handout.txt
+
+Elizabeth Fong: Creating the SQL Database Standards
+https://www.youtube.com/watch?v=rLUm3vst87g&feature=youtu.be
+
+http://dev.mysql.com/doc/refman/5.0/en/string-functions.html
+
+http://dev.mysql.com/doc/refman/5.0/en/date-and-time-functions.html
+
+Week 3 & 4: Database Design & Many-to-Many
+
+Assignment Resources
+SQL Handout (Week 3 Building a Physical Data Schema)
+https://www.wa4e.com/lectures/SQL-02-MySQL-Design-Handout.txt
+
+www.tsugi.org
+
+www.sakaiproject.org

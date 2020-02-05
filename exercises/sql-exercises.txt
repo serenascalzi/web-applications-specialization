@@ -1,0 +1,107 @@
+CREATE DATABASE Music DEFAULT CHARACTER SET utf8;
+
+CREATE TABLE Artist (
+  artist_id INTEGER NOT NULL AUTO_INCREMENT,
+  name VARCHAR (255),
+  PRIMARY KEY (artist_id)
+) ENGINE = InnoDB;
+
+CREATE TABLE Album (
+  album_id INTEGER NOT NULL AUTO_INCREMENT,
+  title VARCHAR (255),
+  artist_id INTEGER,
+  PRIMARY KEY (album_id),
+  INDEX USING BTREE (title),
+  CONSTRAINT FOREIGN KEY (artist_id) REFERENCES Artist (artist_id)
+    ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+CREATE TABLE Genre (
+  genre_id INTEGER NOT NULL AUTO_INCREMENT,
+  name VARCHAR (255),
+  PRIMARY KEY (genre_id),
+  INDEX USING BTREE (name)
+) ENGINE = InnoDB;
+
+CREATE TABLE Track (
+  track_id INTEGER NOT NULL AUTO_INCREMENT,
+  title VARCHAR (255),
+  len INTEGER,
+  rating INTEGER,
+  count INTEGER,
+  album_id INTEGER,
+  genre_id INTEGER,
+  PRIMARY KEY (track_id),
+  INDEX USING BTREE (title),
+  CONSTRAINT FOREIGN KEY (album_id) REFERENCES Album (album_id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FOREIGN KEY (genre_id) REFERENCES Genre (genre_id)
+    ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+INSERT INTO Artist (name) VALUES ('Death Cab for Cutie');
+INSERT INTO Artist (name) VALUES ('Jenny Lewis');
+INSERT INTO Artist (name) VALUES ('The Postal Service');
+
+INSERT INTO Genre (name) VALUES ('Alternative');
+INSERT INTO Genre (name) VALUES ('Rock');
+INSERT INTO Genre (name) VALUES ('Electronic');
+
+INSERT INTO Album (title, artist_id) VALUES ('Transatlanticism', 1);
+INSERT INTO Album (title, artist_id) VALUES ('Plans', 1);
+INSERT INTO Album (title, artist_id) VALUES ('Acid Tongue', 2);
+INSERT INTO Album (title, artist_id) VALUES ('On the Line', 2);
+INSERT INTO Album (title, artist_id) VALUES ('Give Up', 3);
+
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('The Sound of Settling', 5, 3, 1, 1, 1);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('Tiny Vessels', 5, 3, 1, 1, 1);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('Transatlanticism', 5, 3, 1, 1, 1);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('Passenger Seat', 5, 3, 1, 1, 1);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('Soul Meets Body', 5, 3, 1, 2, 1);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('I Will Follow You Into the Dark', 5, 3, 1, 2, 1);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('Your Heart Is an Empty Room', 5, 3, 1, 2, 1);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('Crooked Teeth', 5, 3, 1, 2, 1);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('The Next Messiah', 5, 3, 1, 3, 2);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('Bad Man's World', 5, 3, 1, 3, 2);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('See Fernando', 5, 3, 1, 3, 2);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('Carpetbaggers', 5, 3, 1, 3, 2);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('Heads Gonna Roll', 5, 3, 1, 4, 1);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('Wasted Youth', 5, 3, 1, 4, 1);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('Red Bull & Hennessy', 5, 3, 1, 4, 1);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('Hollywood Lawn', 5, 3, 1, 4, 1);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('Such Great Heights', 5, 3, 1, 5, 3);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('Nothing Better', 5, 3, 1, 5, 3);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('Clark Gable', 5, 3, 1, 5, 3);
+INSERT INTO Track (title, rating, len, count, album_id, genre_id)
+  VALUES ('We Will Become Silhouettes', 5, 3, 1, 5, 3);
+
+SELECT * FROM Track;
+
+SELECT Track.title, Artist.name, Album.title, Genre.name
+  FROM Track JOIN Genre JOIN Album JOIN Artist
+  ON Track.genre_id = Genre.genre_id AND Track.album_id = Album.album_id AND Album.artist_id = Artist.artist_id
+  ORDER BY Album.title;
+
+SELECT DISTINCT Artist.name, Genre.name
+  FROM Track JOIN Genre JOIN Album JOIN Artist
+  ON Track.genre_id = Genre.genre_id AND Track.album_id = Album.album_id AND Album.artist_id = Artist.artist_id
+  WHERE Artist.name = 'Jenny Lewis';
